@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: user-service
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  rabbitmq:
+    addresses: /Fittrack/rabbitmq/addresses
+    ssl:
+      enabled: true
+
+aws:
+  ssm:
+    region: ap-south-1
+
+  postgres-db:
+    url: /Fittrack/postgres-db/url
+    username: /Fittrack/postgres-db/username
+    password: /Fittrack/postgres-db/password
+    driver-class-name: org.postgresql.Driver
+
+jwt:
+  secret: /Fittrack/jwt/secret
+  expiration: /Fittrack/jwt/expiration
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8071
