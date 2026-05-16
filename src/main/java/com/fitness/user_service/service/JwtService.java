@@ -66,7 +66,7 @@ public class JwtService {
                 .claims(claims)
                 .subject(subject)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + parameterStoreService.getParameterValue(jwtProperties.getExpiration())))
+                .expiration(new Date(System.currentTimeMillis() + Long.parseLong(parameterStoreService.getParameterValue(jwtProperties.getExpiration()))))
                 .signWith(getSigningKey())
                 .compact();
     }
