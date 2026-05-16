@@ -7,10 +7,15 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
-  rabbitmq:
-    addresses: /Fittrack/rabbitmq/addresses
-    ssl:
-      enabled: true
+rabbitmq:
+  uri: /Fittrack/rabbitmq/uri
+  exchange:
+    name: fitness_exchange
+    type: topic
+  routing-key:
+    user-routing-key: user_routing_key
+  queue:
+    user-queue: user_queue
 
 aws:
   ssm:

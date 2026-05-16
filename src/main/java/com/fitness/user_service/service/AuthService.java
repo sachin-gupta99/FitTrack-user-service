@@ -1,6 +1,7 @@
 package com.fitness.user_service.service;
 
 import com.fitness.user_service.config.RabbitMQConfig;
+import com.fitness.user_service.config.RabbitMQProperties;
 import com.fitness.user_service.dto.AuthResponseDTO;
 import com.fitness.user_service.dto.LoginRequestDTO;
 import com.fitness.user_service.dto.UserRegisterRequestDTO;
@@ -27,6 +28,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final RabbitTemplate rabbitTemplate;
+    private final RabbitMQProperties rabbitMQProperties;
 
     public AuthResponseDTO register(UserRegisterRequestDTO request) {
         if (userRepository.existsByEmail(request.getEmail())) {
@@ -55,8 +57,8 @@ public class AuthService {
         System.out.println("User registered: " + userSavedDTO);
 
         rabbitTemplate.convertAndSend(
-                RabbitMQConfig.EXCHANGE_NAME,
-                RabbitMQConfig.USER_ROUTING_KEY,
+                rabbitMQProperties.getExchange().getName(),
+                rabbitMQProperties.getRoutingKey().getUserRoutingKey(),
                 userSavedDTO
         );
 
