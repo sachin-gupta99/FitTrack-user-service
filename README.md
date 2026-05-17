@@ -104,6 +104,8 @@ On successful registration, a message is published to:
 - **Queue (bound):** `user_queue`
 - **Payload:** `UserSavedDTO` — `id`, `email`, `firstName`, `lastName`, `role`, `createdAt`, `updatedAt` (JSON, ISO-8601 timestamps).
 
+The RabbitMQ `ConnectionFactory` is built from the SSM-resolved URI at startup; TLS is enabled automatically when the scheme is `amqps://` (works out-of-the-box with CloudAMQP).
+
 ---
 
 ## Configuration
@@ -117,7 +119,7 @@ On successful registration, a message is published to:
 | `/Fittrack/postgres-db/password`  | DB password             |
 | `/Fittrack/jwt/secret`            | JWT signing key         |
 | `/Fittrack/jwt/expiration`        | Token TTL (ms)          |
-| `/Fittrack/rabbitmq/addresses`    | RabbitMQ addresses      |
+| `/Fittrack/rabbitmq/uri`          | Full RabbitMQ URI (e.g. `amqps://user:pass@host/vhost`) |
 
 Other defaults:
 
